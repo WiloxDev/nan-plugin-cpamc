@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="NaN Builders Plugin for CPAMC" width="220" />
+</p>
+
 # 🟣 NaN Builders Plugin for CLI PROXY API CONSOLE (CPAMC)
 
 [![Ecosistema](https://img.shields.io/badge/Ecosistema-CPAMC%20%7C%20Gentle--Shell%20%7C%20Auto--Switcher--Pro-purple?style=flat-square)](#)
