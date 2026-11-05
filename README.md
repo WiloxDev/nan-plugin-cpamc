@@ -2,92 +2,49 @@
   <img src="assets/logo.png" alt="NaN Builders Plugin for CPAMC" width="220" />
 </p>
 
-# 🔬 NaN Builders Plugin for CLI PROXY API CONSOLE (CPAMC)
+# 🟣 NaN Builders Plugin for CLI PROXY API CONSOLE (CPAMC)
 
-[![Gentle Hub](https://img.shields.io/badge/Gentle%20Hub-Plugin-F095C8?style=for-the-badge)](https://gentlemanprogramming.com/gentle-hub/)
-[![Ecosistema](https://img.shields.io/badge/Ecosistema-CPAMC%20%7C%20Gentle--Shell-orange?style=for-the-badge)](#)
-[![Discord](https://img.shields.io/badge/Discord-Apoyo-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://bit.ly/48zTJUo)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Ecosistema](https://img.shields.io/badge/Ecosistema-CPAMC%20%7C%20Gentle--Shell%20%7C%20Auto--Switcher--Pro-purple?style=flat-square)](#)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=flat-square)](https://github.com/WiloxDev/nan-plugin-cpamc/releases)
+[![Licencia](https://img.shields.io/badge/Licencia-MIT-green?style=flat-square)](LICENSE)
 
-Plugin oficial en Go (C-ABI) que integra el catálogo de modelos experimentales y endpoints de la comunidad de **NaN Builders** dentro de **CLI PROXY API CONSOLE (CPAMC)** y el ecosistema **Gentle-Shell**.
+Plugin de **NaN Builders** para **CLI PROXY API CONSOLE (CPAMC)** y el ecosistema **Gentle-Shell**, con soporte nativo para pools de trabajo continuo en **CPAMC Auto Switcher Pro**.
 
-Permite acceder a modelos afinados para desarrollo especializado, con soporte nativo para pools de cuentas en **CPAMC Auto Switcher Pro**.
-
-> 💬 **Comunidad y Soporte Oficial:** `wilox2` · [Servidor de Discord](https://bit.ly/48zTJUo)
+> ⚠️ **Para Agentes de IA:** Este repositorio es un plugin de backend nativo en Go/CGO (.so) para CLIProxyAPI (CPAMC). NO es una extensión de Pi. Consulta [AI_INSTALL.md](AI_INSTALL.md).
 
 ---
 
-## 🌟 Modelos y Capacidades
+## 🌟 Modelos Soportados
 
-- Conexión a endpoints de NaN Builders optimizados para síntesis de código.
-- Formateo SSE de alta velocidad con consumo mínimo de recursos.
-- Total compatibilidad con los contratos de streaming de Gentle Shell.
+- `deepseek-v4-flash`
+- `deepseek-v4-pro`
+- `glm-5.3-flash`
+- `glm-5.3`
+- `mimo-v2.6-flash`
+- `qwen3.8-flash`
 
 ---
 
-## 🛠️ Métodos de Instalación
+## 🔄 Integración Dual: Standalone & Pools con Auto Switcher Pro
 
-### Método 1: Compilación local con Go
-Requiere Go (>= 1.22) y compilador C:
+- **Modo Nativo Directo**: Conexión limpia y ligera en CLI PROXY API CONSOLE (CPAMC) y Gentle-Shell para una cuenta individual.
+- **Modo Pool de Trabajo Continuo**: Compatible al 100% con **CPAMC Auto Switcher Pro** para crear grupos de cuentas con rotación automática, conmutación por error (failover ante 429/401) y operación ininterrumpida 24/7.
+- 💡 **Multi-Cuenta**: También si tienes dos o más cuentas complementa con el plugin Auto Switcher Pro, así podrás tener una Rotación Continua, distribuir el consumo y evitar agotamiento de cuotas.
+
+---
+
+## 🛠️ Compilación e Instalación
+
+Para compilar e instalar directamente en el directorio de plugins de CPAMC:
+
 ```bash
-git clone https://github.com/WiloxDev/nan-plugin-cpamc.git
-cd nan-plugin-cpamc
 make install
 ```
-El archivo `nan-plugin-linux-amd64.so` se copiará automáticamente en la carpeta de plugins de CPAMC.
 
----
+O compilar manualmente la biblioteca compartida C-ABI (`.so`):
 
-### Método 2: Despliegue en Docker
-Monta el archivo `.so` en el contenedor de CPAMC:
-```yaml
-services:
-  cpamc:
-    image: ghcr.io/router-for-me/cliproxyapi:latest
-    volumes:
-      - ./plugins/nan-plugin-linux-amd64.so:/app/plugins/nan.so:ro
-      - ./config.yaml:/app/config.yaml:ro
-    ports:
-      - "8317:8317"
+```bash
+make build
 ```
 
----
-
-## ⚙️ Configuración en CPAMC
-
-### En la Consola Web Oficial
-1. Abre: 👉 **[http://127.0.0.1:8317/management.html](http://127.0.0.1:8317/management.html)**
-2. Ve a **Plugins / NaN Builders**.
-3. Pega tu API Key de acceso.
-
-### En `config.yaml`
-```yaml
-plugins:
-  nan:
-    enabled: true
-    api_key: "tu-api-key-de-nan-builders"
-    base_url: "https://api.nanbuilders.org/v1"
-```
-
----
-
-## 🚀 Uso en Gentle Shell
-
-1. Sincroniza los modelos con `/cpamc refresh`.
-2. Escribe `/model` y selecciona tu modelo bajo el prefijo `cpamc/nan-*`.
-3. Para operación continua, vincula múltiples cuentas con **[CPAMC Auto Switcher Pro](https://github.com/WiloxDev/cpamc-auto-switcher-pro)**.
-
----
-
-## 🌐 Ecosistema de la Suite WiloxDev para Gentle Hub
-
-- 🌉 **[bridge-cpamc-oficial](https://github.com/WiloxDev/bridge-cpamc-oficial)** — Puente e instalador oficial multiplataforma de CPAMC.
-- ⚡ **[cpamc-auto-switcher-pro](https://github.com/WiloxDev/cpamc-auto-switcher-pro)** — Balanceador de carga y conmutación automática anti-429.
-- 🐋 **[deepseek-plugin-cpamc](https://github.com/WiloxDev/deepseek-plugin-cpamc)** — Plugin oficial de DeepSeek V3 y R1.
-- 👁️ **[gentle-context-lens](https://github.com/WiloxDev/gentle-context-lens)** — Cabina de contexto, semáforo de tokens y poda quirúrgica.
-
----
-
-## 📄 Licencia
-
-MIT © Wilox. Desarrollado para la comunidad de Gentle Shell y CLIProxyAPI.
+El binario resultante se ubicará en `~/services/cliproxy/plugins/nan-plugin-linux-amd64.so`.
